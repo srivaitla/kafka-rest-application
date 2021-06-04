@@ -87,7 +87,7 @@ Run following the command to start the Schema Registry:
 - https://docs.huihoo.com/apache/kafka/confluent/3.2/schema-registry/docs/intro.html
 - https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/kafka-commands.html
 
-1). Get the list of schemas - Including schema details:
+**1). Get the list of schemas - Including schema details:**
 
 
 	curl -i -X GET http://localhost:8082/schemas
@@ -96,7 +96,7 @@ Run following the command to start the Schema Registry:
     http://localhost:8082/schemas
 
 
-2). Get the list of schemas - subjects only:
+**2). Get the list of schemas - subjects only:**
 
 
     curl -i -X GET http://localhost:8082/subjects
@@ -105,7 +105,7 @@ Run following the command to start the Schema Registry:
 	http://localhost:8082/subjects
 
 
-3). Fetch a schema by globally unique ID:
+**3). Fetch a schema by globally unique ID:**
 
 	curl -i -X GET http://localhost:8082/schemas/ids/id_number
 
@@ -115,7 +115,7 @@ Run following the command to start the Schema Registry:
 	curl -i -X GET http://localhost:8082/schemas/ids/1
 
 
-4). List all schema versions of the schema registered under subject "topic_name-value":
+**4). List all schema versions of the schema registered under subject "topic_name-value":**
 
 	curl -i -X GET http://localhost:8082/subjects/topic_name-value/versions
 
@@ -124,7 +124,7 @@ Run following the command to start the Schema Registry:
     curl -i -X GET http://localhost:8082/subjects/kafkaTopic_AVRO-value/versions
 
 
-5). Fetch the specific version of the schema registered under subject "topic_name-value":
+**5). Fetch the specific version of the schema registered under subject "topic_name-value":**
 
 	curl -i -X GET http://localhost:8082/subjects/topic_name-value/versions/version_number
 
@@ -134,9 +134,10 @@ Run following the command to start the Schema Registry:
 	curl -i -X GET http://localhost:8082/subjects/kafkaTopic_String-value/versions/1
     curl -i -X GET http://localhost:8082/subjects/kafkaTopic_AVRO-value/versions/1
 
-6). Soft delete a schema:
 
-- Delete all schema versions registered under the subject "topic_name-value".
+**6). Soft delete a schema:**
+
+a). Delete all schema versions registered under the subject "topic_name-value".
 
 
   	curl -i -X DELETE http://localhost:8082/subjects/topic_name-value
@@ -146,7 +147,7 @@ Run following the command to start the Schema Registry:
     curl -i -X DELETE http://localhost:8082/subjects/kafkaTopic_AVRO-value
 
 
-- Delete the specific version of the schema registered under subject "topic_name-value".
+b). Delete the specific version of the schema registered under subject "topic_name-value".
 
 
   	curl -i -X DELETE http://localhost:8082/subjects/topic_name-value/versions/1
@@ -156,7 +157,7 @@ Run following the command to start the Schema Registry:
     curl -i -X DELETE http://localhost:8082/subjects/kafkaTopic_AVRO-value/versions/1
 
 
-- Delete the most recent version of the schema registered under subject "topic_name-value".
+c). Delete the most recent version of the schema registered under subject "topic_name-value".
 
 
     curl -i -X DELETE http://localhost:8082/subjects/topic_name-value/versions/latest
@@ -166,9 +167,9 @@ Run following the command to start the Schema Registry:
     curl -i -X DELETE http://localhost:8082/subjects/kafkaTopic_AVRO-value/versions/latest
 
 
-7). Hard delete a schema:
+**7). Hard delete a schema:**
 
-- Hard delete of a schema with the use of the query string, '?permanent=true' for above commands.
+Hard delete of a schema with the use of the query string, '?permanent=true' for above commands.
 
 
 	curl -i -X DELETE http://localhost:8082/subjects/topic_name-value?permanent=true
@@ -178,12 +179,12 @@ Run following the command to start the Schema Registry:
 	curl -i -X DELETE http://localhost:8082/subjects/kafkaTopic_AVRO-value?permanent=true
 
 
-8). List of supported schema types:
+**8). List of supported schema types:**
 
 	curl -i -X GET http://localhost:8082/schemas/types
 
 
-9). Register a new version of a schema (String format for key) under the subject "topic_name-key":
+**9). Register a new version of a schema (String format for key) under the subject "topic_name-key":**
 
 	curl -i -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8082/subjects/topic_name-key/versions
 
@@ -191,7 +192,7 @@ Run following the command to start the Schema Registry:
 	curl -i -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8082/subjects/kafkaTopic_String-key/versions
 
 
-10).Check if a schema Is registered under subject topic_name-key"
+**10).Check if a schema Is registered under subject topic_name-key"**
 
 	curl -i -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8082/subjects/topic_name-key
 
@@ -199,7 +200,7 @@ Run following the command to start the Schema Registry:
 	curl -i -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8082/subjects/kafkaTopic_String-key
 
 
-11). Update compatibility requirements globally for "topic_name-key":
+**11). Update compatibility requirements globally for "topic_name-key":**
 
 	curl -i -X PUT -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"compatibility": "FULL"}' http://localhost:8082/config/topic_name-key
 
@@ -207,7 +208,7 @@ Run following the command to start the Schema Registry:
 	curl -i -X PUT -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"compatibility": "FULL"}' http://localhost:8082/config/kafkaTopic_String-key
 
 
-12). Register a new version of a schema (String format for value) under the subject "topic_name-value"
+**12). Register a new version of a schema (String format for value) under the subject "topic_name-value"**
 
 	curl -i -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8082/subjects/topic_name-value/versions
 
@@ -215,9 +216,9 @@ Run following the command to start the Schema Registry:
 	curl -i -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8082/subjects/kafkaTopic_String-value/versions
 
 
-13). Register a new version of a schema (AVRO format for value) under the subject "topic_name-value"
+**13). Register a new version of a schema (AVRO format for value) under the subject "topic_name-value"**
 
-- Using schema from a file as part of 'jq' software:
+a). Using schema from a file as part of 'jq' software:
 
   -   Install 'jq' software from here : https://stedolan.github.io/jq/download/
   -   Install 'jq' software using Homebrew: "brew install jq"
@@ -237,7 +238,7 @@ Run following the command to start the Schema Registry:
     jq '. | {schema: tojson}' path_to_avsc_file_contains_schema | curl -i -u "userName:password" -H "Content-Type: application/vnd.schemaregistry.v1+json" -X POST http://localhost:8082/subjects/kafkaTopic_AVRO-value/versions -d @-
 
 
-- Using entire schema as part of command:
+b). Using entire schema as part of command:
 
 
 	Example:
@@ -246,7 +247,7 @@ Run following the command to start the Schema Registry:
 	curl -i -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\":\"record\",\"name\":\"KafkaResponse\",\"namespace\":\"com.nord.kafka.rest.application.dto\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"sessionId\",\"type\":\"string\"},{\"name\":\"result\",\"type\":\"string\"}]}"}' http://localhost:8082/subjects/kafkaTopic_AVRO_Response-value/versions
 
 
-14). Update compatibility requirements globally for "topic_name-value":
+**14). Update compatibility requirements globally for "topic_name-value":**
 
 	curl -i -X PUT -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"compatibility": "FULL"}' http://localhost:8082/config/topic_name-value
 
@@ -261,13 +262,19 @@ Run following the command to start the Schema Registry:
 
 **1). Produce (String) message to Kafka Topic:**
 
-- Run below command to start Producer:
+a). Run below command to start Producer:
 
 
 	./bin/kafka-console-producer --bootstrap-server localhost:9092 --topic topic_name
 
     Example:
 	./bin/kafka-console-producer --bootstrap-server localhost:9092 --topic kafkaTopic_String
+
+b). Enter Following messages in the producer console:
+
+
+    abc
+    xyz
 
 
 **2). Consumer (String) message from Kafka Topic:**
@@ -277,12 +284,6 @@ Run following the command to start the Schema Registry:
     Eaxmple:	
 	./bin/kafka-console-consumer --bootstrap-server localhost:9092 --from-beginning --topic kafkaTopic_String
 
-- Enter Following messages in the producer console:
-
-
-    abc
-    xyz
-
 
 ## Kafka Produce and Consume - AVRO Messages:
 
@@ -290,7 +291,7 @@ Run following the command to start the Schema Registry:
 
 **1). Produce (AVRO) message to Kafka Topic using existing schema id:**
 
-- Run below command to start Producer:
+a). Run below command to start Producer:
 
 
 	./bin/kafka-avro-console-producer --bootstrap-server localhost:9092 --property schema.registry.url=http://localhost:8082 --property value.schema.id=schema_Id --topic topic_name
@@ -298,7 +299,7 @@ Run following the command to start the Schema Registry:
     Example:
     ./bin/kafka-avro-console-producer --bootstrap-server localhost:9092 --property schema.registry.url=http://localhost:8082 --property value.schema.id=2 --topic kafkaTopic_AVRO
 
-- Enter Following messages in the producer console:
+b). Enter Following messages in the producer console:
 
 
     {"id":1, "message":"produce1"}
