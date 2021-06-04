@@ -48,6 +48,22 @@
             <DefaultRolloverStrategy max="100"/>
         </RollingFile>
 
+        <RollingFile name="consumerProducerAppender"
+                     fileName="${log-path}/consumerProducerLogs.txt"
+                     filePattern="${archive-path}/consumerProducerLogs.txt.%d{yyyy-MM-dd-hh-mm}.gz">
+            <PatternLayout
+                    pattern="DateTime=%d{yyyy-MM-dd HH:mm:ss:SSS z}, Thread=[%.80t], Message=%m%n"/>
+
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+            </Filters>
+
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1000KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+
         <RollingFile name="producerAppender"
                      fileName="${log-path}/producerLogs.txt"
                      filePattern="${archive-path}/producerLogs.txt.%d{yyyy-MM-dd-hh-mm}.gz">
@@ -67,19 +83,42 @@
     </Appenders>
     <Loggers>
 
-        <Logger name="com.nord.kafka.rest.application.consumer.KafkaConsumer" additivity="false"
+        <Logger name="com.nord.kafka.rest.application.consumer.KafkaStringConsumer" additivity="false"
                 level="INFO">
             <AppenderRef ref="consoleAppender"/>
             <AppenderRef ref="consumerAppender"/>
+            <AppenderRef ref="consumerProducerAppender"/>
         </Logger>
 
-        <Logger name="com.nord.kafka.rest.application.producer.KafkaProducer" additivity="false"
+        <Logger name="com.nord.kafka.rest.application.consumer.KafkaAVROConsumer" additivity="false"
+                level="INFO">
+            <AppenderRef ref="consoleAppender"/>
+            <AppenderRef ref="consumerAppender"/>
+            <AppenderRef ref="consumerProducerAppender"/>
+        </Logger>
+
+        <Logger name="com.nord.kafka.rest.application.processor.KafkaAVROProcessor" additivity="false"
                 level="INFO">
             <AppenderRef ref="consoleAppender"/>
             <AppenderRef ref="producerAppender"/>
+            <AppenderRef ref="consumerProducerAppender"/>
         </Logger>
 
-        <Root level="DEBUG">
+        <Logger name="com.nord.kafka.rest.application.producer.KafkaStringProducer" additivity="false"
+                level="INFO">
+            <AppenderRef ref="consoleAppender"/>
+            <AppenderRef ref="producerAppender"/>
+            <AppenderRef ref="consumerProducerAppender"/>
+        </Logger>
+
+        <Logger name="com.nord.kafka.rest.application.producer.KafkaAVROProducer" additivity="false"
+                level="INFO">
+            <AppenderRef ref="consoleAppender"/>
+            <AppenderRef ref="producerAppender"/>
+            <AppenderRef ref="consumerProducerAppender"/>
+        </Logger>
+
+        <Root level="INFO">
             <AppenderRef ref="consoleAppender"/>
             <AppenderRef ref="fileLogAppender"/>
         </Root>

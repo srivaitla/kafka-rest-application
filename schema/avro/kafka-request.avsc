@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "KafkaRequest",
+  "namespace": "com.nord.kafka.rest.application.dto",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "message",
+      "type": "string"
+    }
+  ]
+}

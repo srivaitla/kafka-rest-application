@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "KafkaResponse",
+  "namespace": "com.nord.kafka.rest.application.dto",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "sessionId",
+      "type": "string"
+    },
+    {
+      "name": "result",
+      "type": "string"
+    }
+  ]
+}

@@ -9,18 +9,18 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class KafkaConsumer {
+public class KafkaStringConsumer {
 
     @Autowired
     private KafkaUtility utility;
 
-    private static final Logger LOGGER = LogManager.getLogger(KafkaConsumer.class);
+    private static final Logger LOGGER = LogManager.getLogger(KafkaStringConsumer.class);
 
-    @KafkaListener(topics = "${kafka.topic.name}", groupId = "${spring.kafka.consumer.group-id}")
+    @KafkaListener(topics = "${kafka.topic.name.string}", groupId = "${spring.kafka.consumer.group-id}")
     public void consumeTopic(ConsumerRecord<String, String> record) {
-        LOGGER.info("KafkaConsumer ----- ----- ----- Started\n");
+        LOGGER.info("KafkaConsumer-String ----- ----- ----- Started\n");
         LOGGER.info(record.toString() + "\n");
         LOGGER.info("Headers=" + utility.getHeadersAsString(record.headers()) + "\n");
-        LOGGER.info("KafkaConsumer ----- ----- ----- Completed\n\n\n");
+        LOGGER.info("KafkaConsumer-String ----- ----- ----- Completed\n\n\n");
     }
 }
