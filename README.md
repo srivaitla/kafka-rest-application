@@ -1,4 +1,4 @@
-# kafka-rest-application
+# Kafka Rest Application
 - It's Spring boot REST service.
 - It's a Kafka service has both kafka producer and consumer services, which consumes and produces '**String**' data to/from kafka.
 
