@@ -15,6 +15,22 @@
 - Register schemas which are under 'src/main/schema/avro/' folder for your topics (name is given in the application.properties file).
 
 
+
+## ShortCuts of BashProfile to Start, Stop and Delete Kafka in Local:
+
+        alias cdkafka='cd ~/Source/Tools/confluent-6.1.1'
+        alias runzookeeper='./bin/zookeeper-server-start ./etc/kafka/zookeeper.properties'
+        alias runkafka='./bin/kafka-server-start ./etc/kafka/server.properties'
+        alias runschema='./bin/schema-registry-start ./etc/schema-registry/schema-registry.properties'
+
+        alias stopzookeeper='./bin/zookeeper-server-stop'
+        alias stopkafka='./bin/kafka-server-stop'
+        alias stopschema='./bin/schema-registry-stop'
+
+        alias deletekafka='rm -rf /tmp/kafka-logs/'
+        alias deletezookeeper='rm -rf /tmp/zookeeper/'
+
+
 ## Setup 'Kafka' in Local:
 
 - Download the kafka setup from confluent (https://www.confluent.io/)
