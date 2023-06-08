@@ -344,3 +344,38 @@ b). Enter Following messages in the producer console:
     Example:
     ./bin/kafka-avro-console-consumer --bootstrap-server localhost:9092 --property schema.registry.url=http://localhost:8082 --from-beginning --topic sri-test-avro
 
+
+## Regular Topic - Cosumer Lag:
+
+- To view and reset consumer lag of the topic.
+- Before that create following configuration in ssl_config file if Kafka schema using SSL.
+ 
+	request.timeout.ms = 30000
+	security.protocol = SASL_SSL
+	sasl.mechanism = SCRAM-SHA-512
+	sasl.jaas.config = org.apache.kafka.common.security.scram.ScramLoginModule required username="<user_name>" password="<password>";
+
+**1). Describe:**
+
+	bin/kafka-consumer-groups.sh --bootstrap-server <serverName:port_number> --group <topic_group_id> --describe --command-config <ssl_config name with path>
+
+**2). Reset Lag to Latest:**
+
+	bin/kafka-consumer-groups.sh --bootstrap-server <serverName:port_number> --group <topic_group_id> --reset-offsets --to-latest --topic <topic_name> --execute --command-config <ssl_config name with path>
+
+## ChangeLog Topic:
+
+- To view and set update to change log topic
+	
+**1). Describe:**
+
+	bin/kafka-topics.sh --describe --bootstrap-server <serverName:port_number> --command-config <ssl_config name with path>
+ --topic <changelog_topic_name>
+
+**2). Set config:**
+
+	bin/kafka-configs.sh --bootstrap-server <serverName:port_number> --command-config <ssl_config name with path> --alter --entity-type topics --entity-name <changelog_topic_name> --add-config max.message.bytes=<bytes_value>
+
+
+
+	
